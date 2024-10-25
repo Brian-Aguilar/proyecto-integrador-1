@@ -3,6 +3,14 @@
 <%@page import="com.example.integradorsi.DAO.DAOTipoComprobante"%>
 <%
     DAOTipoComprobante conexionTC = new DAOTipoComprobante();
+    String edit = request.getParameter("edit");
+    String tipo;
+    TipoComprobante comp = new TipoComprobante(0, "", true);
+    if (edit != null) {
+        tipo = "Editar";
+    } else {
+        tipo = "Registrar";
+    }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,6 +33,16 @@
                         <div class="card-body">
                             <h1 class="mb-3">Registro de Tipos de Comprobantes</h1>
 
+                            <form class="row align-items-end" method="post">
+                                <div class="col-sm-4">
+                                    <label for="nombre" class="mb-3">Nombre:</label>
+                                    <input name="nombre" placeholder="Nombre" class="form-control" value="<%= comp.getNombre()%>" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-secondary"><%= tipo%></button>
+                                </div>
+                            </form>
+
                             <div class="table-responsive mt-4">
                                 <table class="table text-nowrap mb-0 align-middle">
                                     <thead class="text-dark fs-4">
@@ -34,9 +52,6 @@
                                             </th>
                                             <th class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-0">Nombre</h6>
-                                            </th>
-                                            <th class="border-bottom-0">
-                                                <h6 class="fw-semibold mb-0">Estado</h6>
                                             </th>
                                             <th class="border-bottom-0"></th>
                                         </tr>
