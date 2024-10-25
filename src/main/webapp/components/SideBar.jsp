@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="${pageContext.request.contextPath}/registro-local.jsp" aria-expanded="false">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/registro/local.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-door"></i>
                         </span>

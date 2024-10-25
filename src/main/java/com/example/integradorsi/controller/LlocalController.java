@@ -65,7 +65,7 @@ public class LlocalController extends HttpServlet {
             conexion.update(localRegister);
             session.setAttribute("msg", "Se actualizo exitosamente.");
         }
-        response.sendRedirect("registro-local.jsp");
+        response.sendRedirect("registro/local.jsp");
     }
 
     @Override

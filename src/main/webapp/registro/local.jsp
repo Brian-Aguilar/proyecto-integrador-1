@@ -26,34 +26,34 @@
     <body>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
              data-sidebar-position="fixed" data-header-position="fixed">
-            <%@include file="components/SideBar.jsp" %>
+            <%@include file="../components/SideBar.jsp" %>
             <!<!-- Body de jsp -->
             <div class="body-wrapper">
-                <%@include file="components/Header.jsp" %>
+                <%@include file="../components/Header.jsp" %>
                 <!<!-- Contenido -->
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
                             <h1 class="mb-3">Registro Local</h1>
 
-                            <form class="row" method="post" action="${pageContext.request.contextPath}/LlocalController">
+                            <form class="row align-items-end" method="post" action="${pageContext.request.contextPath}/LlocalController">
                                 <%if (tipo == "Editar") {%>
                                 <input type="hidden" name="tipo" value="editar" />
                                 <input type="hidden" name="id" value="<%=local.getId()%>" />
                                 <% }%>
                                 <div class="col-sm-4">
-                                    <label for="nombre">Nombre:</label>
+                                    <label for="nombre" class="mb-3">Nombre:</label>
                                     <input name="nombre" placeholder="Nombre" class="form-control" value="<%= local.getNombre()%>" />
                                 </div>
                                 <div class="col-sm-4">
-                                    <label for="descripcion">Descripción:</label>
+                                    <label for="descripcion" class="mb-3">Descripción:</label>
                                     <textarea name="descripcion" class="form-control" rows="1" placeholder="Descripción"><%= local.getDescripcion()%></textarea>
                                 </div>
                                 <div class="col-sm-4">
                                     <button type="submit" class="btn btn-secondary"><%= tipo%></button>
                                 </div>
                             </form>
-                            <%@include file="components/Alert.jsp" %>
+                            <%@include file="../components/Alert.jsp" %>
 
                             <div class="table-responsive mt-4">
                                 <table class="table text-nowrap mb-0 align-middle">
@@ -90,7 +90,7 @@
                                                 <span class="fw-normal"><%= l.isEstado() ? "<i class='ti ti-square-check' style='font-size:2rem; color: green;'></i>" : "<i class='ti ti-square-x' style='font-size:2rem; color: red;'></i>"%></span>                          
                                             </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
-                                                <a href="registro-local.jsp?edit=<%=l.getId()%>" type="button" class="btn btn-info">
+                                                <a href="${pageContext.request.contextPath}/registro/local.jsp?edit=<%=l.getId()%>" type="button" class="btn btn-info">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
                                                 <a href="#" type="button" class="btn btn-danger">
