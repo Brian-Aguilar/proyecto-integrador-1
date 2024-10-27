@@ -92,9 +92,11 @@ public class DAOLocal implements IDAO<Llocal> {
         Llocal local = new Llocal();
         try {
             local = getById(id);
+            boolean status = !(local.isEstado());
             if (local != null) {
-                PreparedStatement pst = con.prepareStatement("UPDATE local set estado=0 WEHRE local_id=?");
-                pst.setInt(1, id);
+                PreparedStatement pst = con.prepareStatement("UPDATE local set estado=? WHERE local_id=?");
+                pst.setBoolean(1, status);
+                pst.setInt(2, id);
                 pst.executeUpdate();
             }
         } catch (SQLException e) {

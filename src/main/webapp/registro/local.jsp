@@ -1,14 +1,14 @@
+<%@page import="com.example.integradorsi.services.LocalService"%>
 <%@page import="com.example.integradorsi.models.Llocal"%>
 <%@page import="java.util.List"%>
-<%@page import="com.example.integradorsi.DAO.DAOLocal"%>
 <%
-    DAOLocal conexionLocal = new DAOLocal();
+    LocalService service = new LocalService();
     String edit = request.getParameter("edit");
     String tipo;
     Llocal local = new Llocal(0, "", "", true);
     if (edit != null) {
-        local = conexionLocal.getById(Integer.parseInt(edit));
-        tipo = "Editar";
+        local = service.obtenerLocal(Integer.parseInt(edit));
+        tipo = "Guardar";
     } else {
         tipo = "Registrar";
     }
@@ -37,10 +37,6 @@
                             <h1 class="mb-3">Registro Local</h1>
 
                             <form class="row align-items-end" method="post" action="${pageContext.request.contextPath}/LlocalController">
-                                <%if (tipo == "Editar") {%>
-                                <input type="hidden" name="tipo" value="editar" />
-                                <input type="hidden" name="id" value="<%=local.getId()%>" />
-                                <% }%>
                                 <div class="col-sm-4">
                                     <label for="nombre" class="mb-3">Nombre:</label>
                                     <input name="nombre" placeholder="Nombre" class="form-control" value="<%= local.getNombre()%>" />
@@ -51,6 +47,11 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <button type="submit" class="btn btn-secondary"><%= tipo%></button>
+                                    <%if (tipo == "Guardar") {%>
+                                    <input type="hidden" name="tipo" value="editar" />
+                                    <input type="hidden" name="id" value="<%=local.getId()%>" />
+                                    <a href="${pageContext.request.contextPath}/registro/local.jsp" class="btn btn-danger">Cancelar</a>
+                                    <% }%>
                                 </div>
                             </form>
                             <%@include file="../components/Alert.jsp" %>
@@ -68,14 +69,11 @@
                                             <th class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-0">Descripción</h6>
                                             </th>
-                                            <th class="border-bottom-0">
-                                                <h6 class="fw-semibold mb-0">Estado</h6>
-                                            </th>
                                             <th class="border-bottom-0"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% List<Llocal> locales = conexionLocal.getAll();
+                                        <% List<Llocal> locales = service.obtenerLocales();
                                             for (Llocal l : locales) {
                                         %>
                                         <tr>
@@ -86,16 +84,19 @@
                                             <td class="border-bottom-0">
                                                 <span class="fw-normal"><%= l.getDescripcion()%></span>                          
                                             </td>
-                                            <td class="border-bottom-0">
-                                                <span class="fw-normal"><%= l.isEstado() ? "<i class='ti ti-square-check' style='font-size:2rem; color: green;'></i>" : "<i class='ti ti-square-x' style='font-size:2rem; color: red;'></i>"%></span>                          
-                                            </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
                                                 <a href="${pageContext.request.contextPath}/registro/local.jsp?edit=<%=l.getId()%>" type="button" class="btn btn-info">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <a href="#" type="button" class="btn btn-danger">
+                                                <% if (l.isEstado()) {%>
+                                                <a href="${pageContext.request.contextPath}/LlocalController?delete=<%=l.getId()%>" type="button" class="btn btn-danger">
                                                     <i class="ti ti-trash"></i>
                                                 </a>
+                                                <%} else {%>
+                                                <a href="${pageContext.request.contextPath}/LlocalController?delete=<%=l.getId()%>" type="button" class="btn btn-success">
+                                                    <i class="ti ti-receipt-refund"></i>
+                                                </a>
+                                                <%}%>
                                             </td>
                                         </tr>
                                         <%}%>

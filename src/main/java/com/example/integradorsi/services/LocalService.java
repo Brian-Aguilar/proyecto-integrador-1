@@ -8,8 +8,8 @@ public class LocalService {
     
     private DAOLocal localDAO;
     
-    public LocalService(DAOLocal localDAO) {
-        this.localDAO = localDAO;
+    public LocalService() {
+        this.localDAO = new DAOLocal();
     }
     
     public Llocal obtenerLocal(int id) {

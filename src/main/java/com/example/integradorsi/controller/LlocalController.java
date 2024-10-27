@@ -1,7 +1,7 @@
 package com.example.integradorsi.controller;
 
-import com.example.integradorsi.DAO.DAOLocal;
 import com.example.integradorsi.models.Llocal;
+import com.example.integradorsi.services.LocalService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LlocalController", urlPatterns = {"/LlocalController"})
 public class LlocalController extends HttpServlet {
 
-    protected final DAOLocal conexion = new DAOLocal();
+    protected final LocalService service = new LocalService();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,10 +36,15 @@ public class LlocalController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //String local = request.getParameter("nombre");
-        //String descripcion = request.getParameter("descripcion");
-        //processRequest(request, response);
-        System.out.println("GET");
+        HttpSession session = request.getSession();
+        try {
+            String id = request.getParameter("delete");
+            service.eliminarLocal(Integer.parseInt(id));
+            session.setAttribute("msg", "Se elimino el id: " + id);
+            response.sendRedirect("registro/local.jsp");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -47,6 +52,7 @@ public class LlocalController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+
         String editar = null;
         String local = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
@@ -59,10 +65,10 @@ public class LlocalController extends HttpServlet {
         }
 
         if (editar == null) {
-            conexion.add(localRegister);
+            service.agregarLocal(localRegister);
             session.setAttribute("msg", "Se registro exitosamente.");
         } else {
-            conexion.update(localRegister);
+            service.actualizarLocal(localRegister);
             session.setAttribute("msg", "Se actualizo exitosamente.");
         }
         response.sendRedirect("registro/local.jsp");
