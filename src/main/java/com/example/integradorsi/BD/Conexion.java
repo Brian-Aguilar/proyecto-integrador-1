@@ -17,7 +17,13 @@ public class Conexion {
             conn = DriverManager.getConnection(path_db);
             conn.setAutoCommit(true);
             init(conn);
-        } catch (ClassNotFoundException | SQLException e) {
+            try {
+                dataInit(conn);
+            } catch (Exception ex) {
+                System.out.println("Error al insertar data base:");
+                System.out.println(ex.getMessage());
+            }
+        } catch (ClassNotFoundException | SQLException  e) {
             System.out.println(e.getMessage());
         }
         return conn;
@@ -175,6 +181,13 @@ public class Conexion {
             st.executeUpdate("INSERT INTO tipoComprobante (nombre) VALUES ('Boleta'), ('Factura'), ('Guía'), ('Otro'), ('Nota de venta')");
         } catch (SQLException E) {
         }
+        // Datos de la tabla tipo de documento
+        try{
+            st.executeUpdate("INSERT INTO tipoDocumento (nombre) VALUES ('DNI'), ('CE'), ('Pasaporte')");
+        } catch (SQLException E) {
+            
+        }
+             
     }
 
 }
