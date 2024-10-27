@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOLocal {
+public class DAOLocal implements IDAO<Llocal> {
 
     private Connection con;
     private Statement st;
@@ -19,7 +19,8 @@ public class DAOLocal {
         this.con = Conexion.getConexion();
     }
 
-    public List<Llocal> getAll() throws SQLException {
+    @Override
+    public List<Llocal> getAll() {
         List<Llocal> datos = new ArrayList<>();
         try {
             st = con.createStatement();
@@ -39,6 +40,7 @@ public class DAOLocal {
         return datos;
     }
 
+    @Override
     public Llocal getById(int id) {
         Llocal local = new Llocal();
         try {
@@ -58,6 +60,7 @@ public class DAOLocal {
         return local;
     }
 
+    @Override
     public void add(Llocal local) {
         try {
             PreparedStatement pst = con.prepareStatement("INSERT INTO local (nombre, direccion) VALUES (?,?)");
@@ -70,6 +73,7 @@ public class DAOLocal {
         }
     }
 
+    @Override
     public void update(Llocal local) {
         try {
             PreparedStatement pst = con.prepareStatement("UPDATE local SET nombre=?, direccion=? WHERE local_id=?");
@@ -81,5 +85,39 @@ public class DAOLocal {
             System.out.println(e);
             System.out.println("Error al actualizar el local con el id: " + local.getId());
         }
+    }
+
+    @Override
+    public Llocal delete(int id) {
+        Llocal local = new Llocal();
+        try {
+            local = getById(id);
+            if (local != null) {
+                PreparedStatement pst = con.prepareStatement("UPDATE local set estado=0 WEHRE local_id=?");
+                pst.setInt(1, id);
+                pst.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("Error al eliminar el local con el id: " + id);
+        }
+       return local;
+    }
+
+    @Override
+    public int size() {
+        int cantidad = 0;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) as cantidad FROM local");
+            if(rs != null) {
+                rs.next();
+                cantidad = rs.getInt(1);
+            }
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Error al obtener tamaño de la tabla local");
+        }
+        return cantidad;
     }
 }
