@@ -51,6 +51,7 @@ public class DAOCategoria implements IDAO<Categoria> {
                 res.next();
                 categoria.setId(res.getInt(1));
                 categoria.setNombre(res.getString(2));
+                categoria.setDescripcion(res.getString(3));
                 categoria.setEstado(res.getBoolean(4));
             }
         } catch (SQLException e) {
@@ -64,6 +65,7 @@ public class DAOCategoria implements IDAO<Categoria> {
         try {
             PreparedStatement pst = con.prepareStatement("INSERT INTO categoria (nombre) VALUES (?)");
             pst.setString(1, categoria.getNombre());
+            pst.setString(2, categoria.getDescripcion());
             pst.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -109,15 +111,14 @@ public class DAOCategoria implements IDAO<Categoria> {
         try {
             st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT COUNT(*) as cantidad FROM categoria");
-            if(rs != null) {
+            if (rs != null) {
                 rs.next();
                 cantidad = rs.getInt(1);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("Error al obtener tamaño de la tabla categoria");
         }
         return cantidad;
     }
-
 }

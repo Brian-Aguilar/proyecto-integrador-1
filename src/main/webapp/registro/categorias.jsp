@@ -40,6 +40,10 @@
                                     <input name="nombre" placeholder="Nombre" class="form-control" value="<%= categoria.getNombre()%>" />
                                 </div>
                                 <div class="col-sm-4">
+                                    <label for="descripcion" class="mb-3">Descripción:</label>
+                                    <textarea name="descripcion" class="form-control" rows="1" placeholder="Descripción"><%= categoria.getDescripcion()%></textarea>
+                                </div>
+                                <div class="col-sm-4">
                                     <button type="submit" class="btn btn-secondary"><%= tipo%></button>
                                 </div>
                             </form>
@@ -54,6 +58,9 @@
                                             <th class="border-bottom-0">
                                                 <h6 class="fw-semibold mb-0">Nombre</h6>
                                             </th>
+                                            <th class="border-bottom-0">
+                                                <h6 class="fw-semibold mb-0">Descripcion</h6>
+                                            </th>
                                             <th class="border-bottom-0"></th>
                                         </tr>
                                     </thead>
@@ -64,13 +71,22 @@
                                             <td class="border-bottom-0">
                                                 <span class="fw-normal"><%= c.getNombre()%></span>                          
                                             </td>
+                                            <td class="border-bottom-0">
+                                                <span class="fw-normal"><%= c.getDescripcion()%></span>                          
+                                            </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
-                                                <a href="registro-local.jsp?edit=<%=c.getId()%>" type="button" class="btn btn-info">
+                                                <a href="${pageContext.request.contextPath}/registro/local.jsp?edit=<%=c.getId()%>" type="button" class="btn btn-info">
                                                     <i class="ti ti-edit"></i>
                                                 </a>
-                                                <a href="#" type="button" class="btn btn-danger">
+                                                <% if (c.isEstado()) {%>
+                                                <a href="${pageContext.request.contextPath}/LlocalController?delete=<%=c.getId()%>" type="button" class="btn btn-danger">
                                                     <i class="ti ti-trash"></i>
                                                 </a>
+                                                <%} else {%>
+                                                <a href="${pageContext.request.contextPath}/LlocalController?delete=<%=c.getId()%>" type="button" class="btn btn-success">
+                                                    <i class="ti ti-receipt-refund"></i>
+                                                </a>
+                                                <%}%>
                                             </td>
                                         </tr>
                                         <% }%>
