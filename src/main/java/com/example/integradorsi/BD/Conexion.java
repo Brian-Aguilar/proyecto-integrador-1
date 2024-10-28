@@ -20,10 +20,10 @@ public class Conexion {
             try {
                 dataInit(conn);
             } catch (Exception ex) {
-                System.out.println("Error al insertar data base:");
+                System.out.println("Error al insertar información base:");
                 System.out.println(ex.getMessage());
             }
-        } catch (ClassNotFoundException | SQLException  e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
         }
         return conn;
@@ -171,6 +171,13 @@ public class Conexion {
 
     private static void dataInit(Connection con) throws Exception {
         st = con.createStatement();
+        // Datos base de usuario
+        try {
+            st.executeUpdate("INSERT INTO usuarios (usuario, nombre_completo, password, is_admin, is_vendedor)"
+                    + "VALUES ('admin', 'Administrador', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 0), "
+                    + "('vendedor', 'Vendedor Ejemplo', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 0, 1)");
+        } catch (SQLException e) {
+        }
         // Datos de la tabla local
         try {
             st.executeUpdate("INSERT INTO local (nombre, direccion) VALUES ('Los Olivos 2', 'Av.'), ('SMPL', 'Av.'), ('Callao', 'Av.'), ('Comas', 'Av.')");
@@ -179,15 +186,24 @@ public class Conexion {
         // Datos de la tabla tipo de comprobante
         try {
             st.executeUpdate("INSERT INTO tipoComprobante (nombre) VALUES ('Boleta'), ('Factura'), ('Guía'), ('Otro'), ('Nota de venta')");
-        } catch (SQLException E) {
+        } catch (SQLException e) {
         }
         // Datos de la tabla tipo de documento
-        try{
+        try {
             st.executeUpdate("INSERT INTO tipoDocumento (nombre) VALUES ('DNI'), ('CE'), ('Pasaporte')");
-        } catch (SQLException E) {
-            
+        } catch (SQLException e) {
         }
-             
+        // Datos de la tabla Categoria
+        try {
+            st.executeUpdate("INSERT INTO categoria (nombre) VALUES ('Reloj'), ('Mochila'), ('Accesorio'), ('Billetera'), ('Cartera')");
+        } catch (SQLException e) {
+        }
+        // Datos de la tabla Marca
+        try {
+            st.executeUpdate("INSERT INTO marca (nombre) VALUES ('Adidas'), ('Brisa'), ('Fordan Jeans'), ('Idea Uno'), ('Levis'), ('Falabella'), ('Tulula'), ('Valeska')");
+        } catch (SQLException e) {
+        }
+
     }
 
 }

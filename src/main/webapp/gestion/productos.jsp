@@ -11,11 +11,11 @@
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
              data-sidebar-position="fixed" data-header-position="fixed">
 
-            <%@include file="components/SideBar.jsp" %>
+            <%@include file="../components/SideBar.jsp" %>
 
             <!<!-- Body de jsp -->
             <div class="body-wrapper">
-                <%@include file="components/Header.jsp" %>
+                <%@include file="../components/Header.jsp" %>
                 <!<!-- Contenido -->
                 <div class="container-fluid">
                     <div class="card">
@@ -28,7 +28,7 @@
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                     </form>
                                 </div>
-                                <button type="button" class="btn btn-secondary d-flex align-items-center">
+                                <button type="button" id="btnAgregar" class="btn btn-secondary d-flex align-items-center">
                                     <i class="ti ti-plus mx-1"></i>Agregar producto</button>
                             </div>
                             <div class="table-responsive mt-4">
@@ -75,7 +75,6 @@
                                                 <button type="button" class="btn btn-danger">
                                                     <i class="ti ti-trash"></i>
                                                 </button>
-
                                             </td>
                                         </tr> 
                                     </tbody>
@@ -86,11 +85,64 @@
                 </div>
             </div>
         </div>
+        <style>
+            .modal.show {
+                display: flex;
+            }
+            .modal {
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                z-index: 10;
+                top: 0;
+                left: 0;
+                background: rgba(0,0,0,.3);
+                justify-content: center;
+                align-items: center;
+            }
+            .modal > .card {
+                min-width: 50%;
+                min-height: 50%;
+                display: block;
+            }
+            .close {
+                font-size: 2em;
+                position: absolute;
+                top:10px;
+                right: 10px;
+                cursor: pointer;
+            }
+        </style>
+        <div class="modal">
+            <div class="card">
+                <i class="ti ti-x close"></i>
+
+                <div class="card-body">
+                    <p>Hola</p>
+                </div>
+            </div>
+        </div>
 
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/sidebarmenu.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/simplebar.min.js"></script>
+
+        <script>
+            const btnAgregar = document.getElementById("btnAgregar");
+            if (btnAgregar) {
+                btnAgregar.addEventListener("click", () => {
+                    document.querySelector('.modal').classList.toggle('show');
+                });
+            }
+            const btnClose = document.querySelector('.close');
+            if (btnClose) {
+                btnClose.addEventListener("click", () => {
+                    document.querySelector('.modal').classList.toggle('show');
+
+                });
+            }
+        </script>
     </body>
 </html>

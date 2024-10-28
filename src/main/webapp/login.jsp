@@ -22,7 +22,7 @@
                                         <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                                     </a>
                                     <p class="text-center">TuBaz Ar</p>
-                                    <form action="index.jsp" method="post">
+                                    <form action="${pageContext.request.contextPath}/" method="post">
                                         <div class="mb-3">
                                             <label for="usuario" class="form-label">Usuario</label>
                                             <input type="text" class="form-control" id="usuario" aria-describedby="Usuario" required>

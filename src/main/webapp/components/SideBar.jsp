@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="${pageContext.request.contextPath}/gestion-productos.jsp" aria-expanded="false">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/gestion/productos.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-book-2"></i>
                         </span>
