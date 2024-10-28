@@ -9,11 +9,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DAOLocal implements IDAO<Llocal> {
 
     private Connection con;
     private Statement st;
+    private final Logger logger = LoggerFactory.getLogger(DAOLocal.class);
 
     public DAOLocal() {
         this.con = Conexion.getConexion();
@@ -34,8 +37,8 @@ public class DAOLocal implements IDAO<Llocal> {
                 ));
             }
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error en la consulta de obtener los locales");
+            logger.info("Error en la consulta de obtener los locales, {}",
+                    e.getMessage());
         }
         return datos;
     }
@@ -55,7 +58,8 @@ public class DAOLocal implements IDAO<Llocal> {
                 local.setEstado(res.getBoolean(4));
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta de obtener datos por id de local");
+            logger.info("Error en la consulta de obtener datos por id de local, {}",
+                    e.getMessage());
         }
         return local;
     }
@@ -68,8 +72,7 @@ public class DAOLocal implements IDAO<Llocal> {
             pst.setString(2, local.getDescripcion());
             pst.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error al registrar un local");
+            logger.info("Error al registrar un local, {}", e.getMessage());
         }
     }
 
@@ -82,8 +85,8 @@ public class DAOLocal implements IDAO<Llocal> {
             pst.setInt(3, local.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error al actualizar el local con el id: " + local.getId());
+            logger.info("Error al actualizar el local con el id: {}, {}",
+                    local.getId(), e.getMessage());
         }
     }
 
@@ -100,10 +103,10 @@ public class DAOLocal implements IDAO<Llocal> {
                 pst.executeUpdate();
             }
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error al eliminar el local con el id: " + id);
+            logger.info("Error al eliminar el local con el id: {}, {}",
+                    id, e.getMessage());
         }
-       return local;
+        return local;
     }
 
     @Override
@@ -112,13 +115,13 @@ public class DAOLocal implements IDAO<Llocal> {
         try {
             st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT COUNT(*) as cantidad FROM local");
-            if(rs != null) {
+            if (rs != null) {
                 rs.next();
                 cantidad = rs.getInt(1);
             }
-        } catch(SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Error al obtener tamaño de la tabla local");
+        } catch (SQLException e) {
+            logger.info("Error al obtener el tamaño en la tabla local, {}",
+                    e.getMessage());
         }
         return cantidad;
     }
