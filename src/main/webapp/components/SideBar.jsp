@@ -51,6 +51,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/registro/marcas.jsp" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-trademark"></i>
+                        </span>
+                        <span class="hide-menu">Marcas</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="${pageContext.request.contextPath}/registro/tipo-comprobante.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-door"></i>
