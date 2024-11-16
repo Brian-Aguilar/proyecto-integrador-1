@@ -1,3 +1,7 @@
+<%@page import="com.example.integradorsi.utils.Authenticator"%>
+<%
+    Authenticator.validated(request, response);
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,14 +26,14 @@
                                         <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
                                     </a>
                                     <p class="text-center">TuBaz Ar</p>
-                                    <form action="${pageContext.request.contextPath}/" method="post">
+                                    <form action="${pageContext.request.contextPath}/LoginController" method="post">
                                         <div class="mb-3">
                                             <label for="usuario" class="form-label">Usuario</label>
-                                            <input type="text" class="form-control" id="usuario" aria-describedby="Usuario" required>
+                                            <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="Usuario" required>
                                         </div>
                                         <div class="mb-4">
                                             <label for="contrasena" class="form-label">Contraseña</label>
-                                            <input type="password" class="form-control" id="contrasena" required>
+                                            <input type="password" class="form-control" id="contrasena" name="password" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Ingresar</button>
                                     </form>

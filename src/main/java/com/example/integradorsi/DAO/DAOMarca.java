@@ -9,11 +9,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DAOMarca implements IDAO<Marca> {
 
     private Connection con;
     private Statement st;
+    private final Logger logger = LoggerFactory.getLogger(DAOLocal.class);
 
     public DAOMarca() {
         this.con = Conexion.getConexion();
@@ -34,8 +37,8 @@ public class DAOMarca implements IDAO<Marca> {
                 ));
             }
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error en la consulta de obtener las marcas");
+            logger.info("Error en la consulta de obtener los marcas, {}",
+                    e.getMessage());
         }
         return lista;
     }
@@ -55,7 +58,8 @@ public class DAOMarca implements IDAO<Marca> {
                 marca.setEstado(res.getBoolean(4));
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta de obtener datos por id de marca");
+            logger.info("Error en la consulta de obtener datos por id de marca, {}",
+                    e.getMessage());
         }
         return marca;
     }
@@ -68,8 +72,7 @@ public class DAOMarca implements IDAO<Marca> {
             pst.setString(2, marca.getDescripcion());
             pst.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error al agregar una marca");
+            logger.info("Error al registrar una marca, {}", e.getMessage());
         }
     }
 
@@ -81,8 +84,8 @@ public class DAOMarca implements IDAO<Marca> {
             pst.setInt(3, marca.getId());
             pst.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error al actualizar la marca con el id: " + marca.getId());
+            logger.info("Error al actualizar la marca con el id: {}, {}",
+                    marca.getId(), e.getMessage());
         }
     }
 
@@ -99,8 +102,8 @@ public class DAOMarca implements IDAO<Marca> {
                 pst.executeUpdate();
             }
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error al eliminar la marca con el id: " + id);
+            logger.info("Error al eliminar la marca con el id: {}, {}",
+                    id, e.getMessage());
         }
         return marca;
     }
@@ -116,8 +119,8 @@ public class DAOMarca implements IDAO<Marca> {
                 cantidad = rs.getInt(1);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Error al obtener tamaño de la tabla marca");
+            logger.info("Error al obtener el tamaño en la tabla marca, {}",
+                    e.getMessage());
         }
         return cantidad;
     }

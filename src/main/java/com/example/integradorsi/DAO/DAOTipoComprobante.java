@@ -8,16 +8,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DAOTipoComprobante {
-    
+
     private Connection con;
     private Statement st;
-    
+    private final Logger logger = LoggerFactory.getLogger(DAOLocal.class);
+
     public DAOTipoComprobante() {
         this.con = Conexion.getConexion();
     }
-    
+
     public List<TipoComprobante> getAll() throws SQLException {
         List<TipoComprobante> datos = new ArrayList<>();
         try {
@@ -30,9 +33,9 @@ public class DAOTipoComprobante {
                         res.getBoolean("estado")
                 ));
             }
-        } catch(SQLException e) {
-            System.out.println(e);
-            System.out.println("Error en la consulta de obtener los tipos de comprobantes");
+        } catch (SQLException e) {
+            logger.info("Error en la consulta de obtener los tipos de comprobantes, {}",
+                    e.getMessage());
         }
         return datos;
     }
