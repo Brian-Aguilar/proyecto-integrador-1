@@ -1,3 +1,8 @@
+<%@page import="com.example.integradorsi.models.Productos"%>
+<%@page import="com.example.integradorsi.DAO.DAOProductos"%>
+<%
+    DAOProductos productos = new DAOProductos();
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,6 +11,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TuBaz Ar | Gestión Productos</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.min.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css"/>
     </head>
     <body>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -54,19 +60,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%for (Productos prod : productos.getAll()) {%>
                                         <tr>
-                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%=prod.getId()%></h6></td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Ejemplo</span>                          
+                                                <span class="fw-normal"><%=prod.getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <h6 class="mb-0 fw-normal fs-4">S/. 10.0</h6>
+                                                <h6 class="mb-0 fw-normal fs-4">S/. <%=prod.getPrecio()%></h6>
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Categría</span>                          
+                                                <span class="fw-normal"><%=prod.getCategoria().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Marca</span>                          
+                                                <span class="fw-normal"><%=prod.getMarca().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
                                                 <button type="button" class="btn btn-info">
@@ -77,6 +84,7 @@
                                                 </button>
                                             </td>
                                         </tr> 
+                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -85,64 +93,21 @@
                 </div>
             </div>
         </div>
-        <style>
-            .modal.show {
-                display: flex;
-            }
-            .modal {
-                width: 100vw;
-                height: 100vh;
-                position: fixed;
-                z-index: 10;
-                top: 0;
-                left: 0;
-                background: rgba(0,0,0,.3);
-                justify-content: center;
-                align-items: center;
-            }
-            .modal > .card {
-                min-width: 50%;
-                min-height: 50%;
-                display: block;
-            }
-            .close {
-                font-size: 2em;
-                position: absolute;
-                top:10px;
-                right: 10px;
-                cursor: pointer;
-            }
-        </style>
         <div class="modal">
             <div class="card">
                 <i class="ti ti-x close"></i>
-
                 <div class="card-body">
-                    <p>Hola</p>
+                    <%@include file="../components/gestionProductos.jsp" %>
                 </div>
             </div>
         </div>
 
+        <script src="${pageContext.request.contextPath}/assets/js/modal.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/sidebarmenu.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/simplebar.min.js"></script>
 
-        <script>
-            const btnAgregar = document.getElementById("btnAgregar");
-            if (btnAgregar) {
-                btnAgregar.addEventListener("click", () => {
-                    document.querySelector('.modal').classList.toggle('show');
-                });
-            }
-            const btnClose = document.querySelector('.close');
-            if (btnClose) {
-                btnClose.addEventListener("click", () => {
-                    document.querySelector('.modal').classList.toggle('show');
-
-                });
-            }
-        </script>
     </body>
 </html>
