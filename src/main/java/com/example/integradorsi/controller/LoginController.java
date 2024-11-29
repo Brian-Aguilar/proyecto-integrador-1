@@ -3,7 +3,6 @@ package com.example.integradorsi.controller;
 import com.example.integradorsi.models.Login;
 import com.example.integradorsi.services.LoginService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

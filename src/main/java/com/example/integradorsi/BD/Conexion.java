@@ -203,6 +203,12 @@ public class Conexion {
             st.executeUpdate("INSERT INTO marca (nombre) VALUES ('Adidas'), ('Brisa'), ('Fordan Jeans'), ('Idea Uno'), ('Levis'), ('Falabella'), ('Tulula'), ('Valeska')");
         } catch (SQLException e) {
         }
+        // Datos de la tabla Productos
+        try {
+            st.executeUpdate("INSERT INTO productos (nombre, descripcion, precio, categoria_id, marca_id) "
+                    + "VALUES ('Mochila P2', 'Mochila lbl 2005', 21.10, 5, 2)");
+        } catch (SQLException e) {
+        }
 
     }
 
