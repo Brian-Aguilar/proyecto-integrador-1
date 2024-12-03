@@ -1,3 +1,9 @@
+<%@page import="com.example.integradorsi.models.Clientes"%>
+<%@page import="com.example.integradorsi.DAO.DAOClientes"%>
+<%
+    DAOClientes clientes = new DAOClientes();
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,16 +12,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TuBaz Ar | Gestion Clientes</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.min.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css"/>
     </head>
     <body>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
              data-sidebar-position="fixed" data-header-position="fixed">
 
-            <%@include file="components/SideBar.jsp" %>
+            <%@include file="../components/SideBar.jsp" %>
 
             <!<!-- Body de jsp -->
             <div class="body-wrapper">
-                <%@include file="components/Header.jsp" %>
+                <%@include file="../components/Header.jsp" %>
                 <!<!-- Contenido -->
                 <div class="container-fluid">
                     <div class="card">
@@ -28,7 +35,7 @@
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                     </form>
                                 </div>
-                                <button type="button" class="btn btn-secondary d-flex align-items-center">
+                                <button id="btnAgregar" type="button" class="btn btn-secondary d-flex align-items-center">
                                     <i class="ti ti-plus mx-1"></i>Agregar cliente
                                 </button>
                             </div>
@@ -58,22 +65,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <%for (Clientes c : clientes.getAll()) { %>
                                         <tr>
-                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%=c.getId()%></h6></td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Nombre com</span>                          
+                                                <span class="fw-normal"><%=c.getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <h6 class="mb-0 fw-normal">Apellido com</h6>
+                                                <h6 class="mb-0 fw-normal"><%=c.getApellidoP()%> <%=c.getApellidoM()%></h6>
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">70707070</span>                          
+                                                <span class="fw-normal"><%=c.getDocumento()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">nombre@completo.com</span>                          
+                                                <span class="fw-normal"><%=c.getCorreo()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">987678543</span>                          
+                                                <span class="fw-normal"><%=c.getTelefono()%></span>                          
                                             </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
                                                 <button type="button" class="btn btn-info">
@@ -84,6 +92,7 @@
                                                 </button>
                                             </td>
                                         </tr> 
+                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -91,14 +100,21 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <div class="modal">
+            <div class="card">
+                <i class="ti ti-x close"></i>
+                <div class="card-body">
+                    <%@include file="../components/gestionClientes.jsp" %>
+                </div>
+            </div>
+        </div>
+
+        <script src="${pageContext.request.contextPath}/assets/js/modal.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/sidebarmenu.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/apexcharts.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/simplebar.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script>
     </body>
 </html>

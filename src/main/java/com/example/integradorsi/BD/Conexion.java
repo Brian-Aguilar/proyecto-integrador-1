@@ -209,6 +209,20 @@ public class Conexion {
                     + "VALUES ('Mochila P2', 'Mochila lbl 2005', 21.10, 5, 2)");
         } catch (SQLException e) {
         }
+        /* Datos de clientes
+        try {
+            st.executeUpdate("INSERT INTO cliente "
+                    + "(nombre_completo, apellido_materno, apellido_paterno, telefono, documento_id, documento_informacion, correo) VALUES "
+                    + "('Raúl','Gimenez','Gutierrez','984855643','1','10959670','Gimenez.Gutierrez@gmail.com'),"
+                    + "('Ricardo','Lopez','Ramirez','957340304','1','16959870','Lopez.Ramirez@gmail.com'),"
+                    + "('Claudio','Gutierrez','Alvarez','926400082','1','11058044','Gutierrez.Alvarez@gmail.com'),"
+                    + "('Ana','Medina','Aguirre','942110114','1','11643648','Medina.Aguirre@gmail.com'),"
+                    + "('Mónica','Ramirez','Martinez','938888918','1','76628836','Ramirez.Martinez@gmail.com'),"
+                    + "('Cecilia','Acosta','Gomez','934205057','1','78908760','Acosta.Gomez@gmail.com'),"
+                    + "('Cecilia','Alvarez','Suarez','920584453','1','10204105','Alvarez.Suarez@gmail.com')");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }*/
 
     }
 
