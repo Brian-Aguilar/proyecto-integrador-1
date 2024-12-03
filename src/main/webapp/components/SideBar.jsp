@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="${pageContext.request.contextPath}/registro-ventas.jsp" aria-expanded="false">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/registro/ventas.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-shopping-cart"></i>
                         </span>
@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="${pageContext.request.contextPath}/gestion-ventas.jsp" aria-expanded="false">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/gestion/ventas.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-shopping-cart"></i>
                         </span>

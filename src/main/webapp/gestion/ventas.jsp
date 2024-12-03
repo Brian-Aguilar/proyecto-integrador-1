@@ -11,11 +11,11 @@
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
              data-sidebar-position="fixed" data-header-position="fixed">
 
-            <%@include file="components/SideBar.jsp" %>
+            <%@include file="../components/SideBar.jsp" %>
 
             <!<!-- Body de jsp -->
             <div class="body-wrapper">
-                <%@include file="components/Header.jsp" %>
+                <%@include file="../components/Header.jsp" %>
                 <!<!-- Contenido -->
                 <div class="container-fluid">
                     <div class="card">

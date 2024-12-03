@@ -1,3 +1,7 @@
+<%@page import="com.example.integradorsi.models.TipoComprobante"%>
+<%@page import="com.example.integradorsi.DAO.DAOTipoComprobante"%>
+<%@page import="com.example.integradorsi.models.Llocal"%>
+<%@page import="com.example.integradorsi.DAO.DAOLocal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,29 +15,34 @@
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
              data-sidebar-position="fixed" data-header-position="fixed">
 
-            <%@include file="components/SideBar.jsp" %>
+            <%@include file="../components/SideBar.jsp" %>
 
             <!<!-- Body de jsp -->
             <div class="body-wrapper">
-                <%@include file="components/Header.jsp" %>
+                <%@include file="../components/Header.jsp" %>
                 <!<!-- Contenido -->
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
                             <h1 class="mb-3">Registro Ventas</h1>
-
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div>
                                         <label for="local" class="my-2">Local:</label>
                                         <select name="local" class="form-control">
-                                            <option value="">Local 1</option>
+                                            <% DAOLocal localdao = new DAOLocal();
+                                                for (Llocal l : localdao.getAll()) {%>
+                                            <option value="<%=l.getId()%>"><%= l.getNombre()%></option>
+                                            <%}%>
                                         </select>
                                     </div>
                                     <div>
                                         <label for="tipoVenta" class="my-2">Tipo de venta:</label>
                                         <select name="tipoVenta" class="form-control">
-                                            <option value="">Efectivo</option>
+                                            <% DAOTipoComprobante comprobante = new DAOTipoComprobante();
+                                                for (TipoComprobante tc : comprobante.getAll()) {%>
+                                            <option value="<%=tc.getId()%>"><%=tc.getNombre()%></option>
+                                            <%}%>
                                         </select>
                                     </div>
                                     <div>
@@ -77,13 +86,13 @@
                                             </button>
                                         </div>
                                     </div>
-                                    
+
                                     <hr />
                                     <div class="d-flex align-items-center gap-4 w-100 justify-content-end">
                                         <h4>Total:</h4>
                                         <h2>S/. 40.00</h2>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

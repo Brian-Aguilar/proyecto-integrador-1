@@ -27,7 +27,7 @@ public class DAOLocal implements IDAO<Llocal> {
         List<Llocal> datos = new ArrayList<>();
         try {
             st = con.createStatement();
-            ResultSet res = st.executeQuery("SELECT * FROM local");
+            ResultSet res = st.executeQuery("SELECT * FROM local where estado=1");
             while (res.next()) {
                 datos.add(new Llocal(
                         res.getInt("local_id"),
