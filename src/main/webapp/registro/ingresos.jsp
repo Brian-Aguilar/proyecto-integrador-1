@@ -6,23 +6,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TuBaz Ar | Registro Ingresos</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/styles.min.css"/>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css"/>
     </head>
     <body>
         <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
              data-sidebar-position="fixed" data-header-position="fixed">
 
-            <%@include file="components/SideBar.jsp" %>
+            <%@include file="../components/SideBar.jsp" %>
 
             <!<!-- Body de jsp -->
             <div class="body-wrapper">
-                <%@include file="components/Header.jsp" %>
+                <%@include file="../components/Header.jsp" %>
                 <!<!-- Contenido -->
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-body">
                             <h1>Registro Ingresos</h1>
                             <div class="d-flex justify-content-end align-items-center py-2">
-                                <button type="button" class="btn btn-secondary d-flex align-items-center">
+                                <button id="btnAgregar" type="button" class="btn btn-secondary d-flex align-items-center">
                                     <i class="ti ti-plus mx-1"></i>Agregar ingreso
                                 </button>
                             </div>
@@ -79,14 +80,22 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <div class="modal">
+            <div class="card">
+                <i class="ti ti-x close"></i>
+                <div class="card-body">
+                    <%@include file="../components/registroIngresos.jsp" %>
+                </div>
+            </div>
+        </div>
+
+        <script src="${pageContext.request.contextPath}/assets/js/modal.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/sidebarmenu.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/apexcharts.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/simplebar.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script>
     </body>
 </html>
