@@ -108,7 +108,7 @@
                     <span class="hide-menu">REPORTES</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="${pageContext.request.contextPath}/reportes-ingresos.jsp" aria-expanded="false">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/reportes/ingresos.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-report-search"></i>
                         </span>
@@ -116,7 +116,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="${pageContext.request.contextPath}/reportes-ventas.jsp" aria-expanded="false">
+                    <a class="sidebar-link" href="${pageContext.request.contextPath}/reportes/ventas.jsp" aria-expanded="false">
                         <span>
                             <i class="ti ti-report-search"></i>
                         </span>
