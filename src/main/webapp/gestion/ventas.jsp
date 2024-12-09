@@ -28,7 +28,7 @@
                                         <button type="submit" class="btn btn-primary">Buscar</button>
                                     </form>
                                 </div>
-                                <a href="registro-ventas.jsp" class="btn btn-secondary d-flex align-items-center">
+                                <a href="${pageContext.request.contextPath}/registro/ventas.jsp" class="btn btn-secondary d-flex align-items-center">
                                     <i class="ti ti-plus mx-1"></i>Agregar venta
                                 </a>
                             </div>
