@@ -105,8 +105,6 @@
         <script src="${pageContext.request.contextPath}/assets/js/bootstrap.bundle.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/sidebarmenu.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/app.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/apexcharts.min.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/simplebar.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/dashboard.js"></script>
     </body>
 </html>

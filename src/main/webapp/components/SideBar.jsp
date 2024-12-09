@@ -1,8 +1,8 @@
 <aside class="left-sidebar">
     <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
+        <div class="brand-logo d-flex align-items-center justify-content-center text-center">
             <a href="index.jsp" class="text-nowrap logo-img">
-                <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+                <h2>TuBaz Ar</h2>
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8"></i>
