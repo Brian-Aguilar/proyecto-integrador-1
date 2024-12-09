@@ -7,6 +7,10 @@ public class Llocal {
     private boolean estado;
 
     public Llocal() {
+        this.id = 0;
+        this.nombre = null;
+        this.descripcion = null;
+        this.estado = false;
     }
 
     public Llocal(String nombre) {

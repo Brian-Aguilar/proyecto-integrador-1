@@ -1,32 +1,23 @@
 package com.example.integradorsi.models;
 
-public class TipoComprobante {
+public class TipoVentas {
 
     private int id;
     private String nombre;
+    private String descripcion;
     private boolean estado;
 
-    public TipoComprobante() {
+    public TipoVentas() {
         this.id = 0;
-        this.nombre = "";
+        this.nombre = null;
+        this.descripcion = null;
         this.estado = false;
     }
 
-    public TipoComprobante(String nombre) {
-        this.id = 0;
-        this.nombre = nombre;
-        this.estado = true;
-    }
-
-    public TipoComprobante(int id, String nombre) {
+    public TipoVentas(int id, String nombre, String descripcion, boolean estado) {
         this.id = id;
         this.nombre = nombre;
-        this.estado = true;
-    }
-
-    public TipoComprobante(int id, String nombre, boolean estado) {
-        this.id = id;
-        this.nombre = nombre;
+        this.descripcion = descripcion;
         this.estado = estado;
     }
 
@@ -44,6 +35,14 @@ public class TipoComprobante {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public boolean isEstado() {
