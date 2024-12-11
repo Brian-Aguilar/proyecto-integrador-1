@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.example.integradorsi.DAO.DAOTipoComprobante"%>
 <%
-    DAOTipoComprobante conexionTC = new DAOTipoComprobante();
+    DAOTipoComprobante conexionTC = new DAOTipoComprobante(null);
     String edit = request.getParameter("edit");
     String tipo;
     TipoComprobante comp = new TipoComprobante(0, "", true);

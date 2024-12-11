@@ -29,6 +29,20 @@ public class Ingresos {
         this.eliminar_fecha = null;
         this.estado = false;
     }
+    public Ingresos(int id) {
+        this.id = id;
+    }
+
+    public Ingresos(TipoComprobante comprobante, Date fecha, int numero_comprobante, Llocal local, int importe, Login registro_usuario, Date registro_fecha) {
+        this.comprobante = comprobante;
+        this.fecha = fecha;
+        this.numero_comprobante = numero_comprobante;
+        this.local = local;
+        this.importe = importe;
+        this.registro_usuario = registro_usuario;
+        this.registro_fecha = registro_fecha;
+        this.estado = true;
+    }
 
     public Ingresos(int id, TipoComprobante comprobante, Date fecha, int numero_comprobante, Llocal local, int importe, Login registro_usuario, Date registro_fecha, Login modificar_usuario, Date modificar_fecha, Login eliminar_usuario, Date eliminar_fecha, boolean estado) {
         this.id = id;

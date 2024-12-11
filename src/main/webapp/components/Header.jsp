@@ -6,7 +6,7 @@
     try {
         usuario = (Login) request.getSession().getAttribute("login");
         if (usuario == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(request.getContextPath() +"/login.jsp");
         }
     } catch (Exception e) {
         usuario = new Login();

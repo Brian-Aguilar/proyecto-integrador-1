@@ -15,8 +15,12 @@ public class DAOCategoria implements IDAO<Categoria> {
     private Connection con;
     private Statement st;
 
-    public DAOCategoria() {
-        this.con = Conexion.getConexion();
+    public DAOCategoria(Connection x) {
+        if (x != null) {
+            this.con = x;
+        } else {
+            this.con = Conexion.getConexion();
+        }
     }
 
     @Override

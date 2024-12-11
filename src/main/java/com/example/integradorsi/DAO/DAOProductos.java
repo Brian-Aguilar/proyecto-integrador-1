@@ -22,8 +22,8 @@ public class DAOProductos implements IDAO<Productos> {
     
     public DAOProductos() {
         this.con = Conexion.getConexion();
-        this.cat = new DAOCategoria();
-        this.mar = new DAOMarca();
+        this.cat = new DAOCategoria(this.con);
+        this.mar = new DAOMarca(this.con);
     }
     
     @Override
@@ -80,6 +80,7 @@ public class DAOProductos implements IDAO<Productos> {
     
     @Override
     public void add(Productos item) {
+        System.out.println(item.getNombre());
         try {
             PreparedStatement pst = con.prepareStatement("INSERT INTO productos (nombre, descripcion, precio, categoria_id, marca_id) VALUES (?, ?, ?, ?, ?)");
             pst.setString(1, item.getNombre());

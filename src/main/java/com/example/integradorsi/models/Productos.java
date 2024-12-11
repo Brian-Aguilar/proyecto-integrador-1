@@ -15,6 +15,13 @@ public class Productos {
         this.marca = null;
         this.estado = true;
     }
+    
+    public Productos(int id) {
+        this.id = id;
+        this.categoria = null;
+        this.marca = null;
+        this.estado = true;
+    }
 
     public Productos(int id, String nombre, String descripcion, double precio) {
         this.id = id;

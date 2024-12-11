@@ -8,7 +8,7 @@ public class LoginService {
     private DAOLogin loginDAO;
     
     public LoginService() {
-        this.loginDAO = new DAOLogin();
+        this.loginDAO = new DAOLogin(null);
     }
     
     public List<Login> obtenerUsuarios() {

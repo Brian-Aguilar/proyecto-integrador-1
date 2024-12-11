@@ -16,7 +16,7 @@ public class Authenticator {
             String pathDf = req.getServletPath();
             if (usuario == null) {
                 if (!pathDf.contains("login")) {
-                    res.sendRedirect("login.jsp");
+                    res.sendRedirect(req.getContextPath() + "/login.jsp");
                 }
             } else {
                 if (pathDf.contains("login")) {

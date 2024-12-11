@@ -8,7 +8,7 @@ public class CategoriaService {
     private DAOCategoria categoriaDAO;
     
     public CategoriaService() {
-        this.categoriaDAO = new DAOCategoria();
+        this.categoriaDAO = new DAOCategoria(null);
     }
     
     public Categoria obtenerCategoria(int id) {

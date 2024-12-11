@@ -18,8 +18,12 @@ public class DAOLogin implements IDAO<Login> {
     private Statement st;
     private final Logger logger = LoggerFactory.getLogger(DAOLocal.class);
 
-    public DAOLogin() {
-        this.con = Conexion.getConexion();
+    public DAOLogin(Connection x) {
+        if (x != null) {
+            this.con = x;
+        } else {
+            this.con = Conexion.getConexion();
+        }
     }
 
     @Override
@@ -46,7 +50,26 @@ public class DAOLogin implements IDAO<Login> {
 
     @Override
     public Login getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Login dato = new Login();
+        try {
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM usuarios WHERE usuario_id = ?");
+            pst.setInt(1, id);
+            ResultSet res = pst.executeQuery();
+            if (res != null) {
+                res.next();
+                dato = new Login(
+                        res.getInt("usuario_id"),
+                        res.getString("usuario"),
+                        res.getString("nombre_completo"),
+                        res.getBoolean("is_vendedor"),
+                        res.getBoolean("estado")
+                );
+            }
+        } catch (SQLException e) {
+            logger.info("Error en la consulta de obtener datos por id de usuario, {}",
+                    e.getMessage());
+        }
+        return dato;
     }
 
     @Override
@@ -76,7 +99,7 @@ public class DAOLogin implements IDAO<Login> {
             pst.setString(1, u.getUsuario());
             pst.setString(2, u.getPassword());
             ResultSet res = pst.executeQuery();
-            if(res != null) {
+            if (res != null) {
                 res.next();
                 usuario.setId(res.getInt("usuario_id"));
                 usuario.setUsuario(res.getString("usuario"));

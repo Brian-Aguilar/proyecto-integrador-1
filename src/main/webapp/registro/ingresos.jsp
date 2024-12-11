@@ -1,3 +1,5 @@
+<%@page import="com.example.integradorsi.models.DetalleIngresos"%>
+<%@page import="com.example.integradorsi.DAO.DAODetalleIngresos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -49,20 +51,22 @@
                                             <th class="border-bottom-0"></th>
                                         </tr>
                                     </thead>
+                                    <% DAODetalleIngresos daoDI = new DAODetalleIngresos();%>
                                     <tbody>
+                                        <% for (DetalleIngresos i : daoDI.getAll()) {%>
                                         <tr>
-                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%=i.getId()%></h6></td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Panzito</span>                          
+                                                <span class="fw-normal"><%=i.getProducto().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <h6 class="mb-0 fw-normal">2</h6>
+                                                <h6 class="mb-0 fw-normal"><%=i.getCantidad()%></h6>
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 1.20</span>                          
+                                                <span class="fw-normal">S/. <%=i.getProducto().getPrecio() %></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 2.40</span>                          
+                                                <span class="fw-normal">S/. <%=i.getPrecio() %></span>                          
                                             </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
                                                 <button type="button" class="btn btn-info">
@@ -73,6 +77,7 @@
                                                 </button>
                                             </td>
                                         </tr> 
+                                        <%}%>
                                     </tbody>
                                 </table>
                             </div>

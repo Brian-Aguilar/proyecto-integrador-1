@@ -8,12 +8,15 @@ import java.sql.Statement;
 public class Conexion {
 
     private static Statement st;
+    private static Connection conn = null;
 
     public static Connection getConexion() {
-        Connection conn = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            String path_db = "jdbc:sqlite:/Users/brian/Desktop/sistemaInventario.db";
+        } catch (ClassNotFoundException ex) {
+        }
+        String path_db = "jdbc:sqlite:/Users/brian/Desktop/sistemaInventario.db";
+        try {
             conn = DriverManager.getConnection(path_db);
             conn.setAutoCommit(true);
             init(conn);
@@ -23,10 +26,11 @@ public class Conexion {
                 System.out.println("Error al insertar información base:");
                 System.out.println(ex.getMessage());
             }
-        } catch (ClassNotFoundException | SQLException e) {
+            return conn;
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return null;
         }
-        return conn;
     }
 
     private static void init(Connection con) {
@@ -110,9 +114,9 @@ public class Conexion {
                     + "	importe REAL NOT NULL,"
                     + "	registro_usuario INTEGER NOT NULL,"
                     + "	registro_fecha TIMESTAMP DEFAULT (datetime('now', 'localtime')),"
-                    + "	modificar_usuario INTEGER NOT NULL,"
+                    + "	modificar_usuario INTEGER,"
                     + "	modificar_fecha TIMESTAMP DEFAULT (datetime('now', 'localtime')),"
-                    + "	eliminar_usuario INTEGER NOT NULL,"
+                    + "	eliminar_usuario INTEGER,"
                     + "	eliminar_fecha TIMESTAMP DEFAULT (datetime('now', 'localtime')),"
                     + "	estado NUMERIC DEFAULT 1,"
                     + "	FOREIGN KEY (comprobante_id) REFERENCES tipoComprobante(comprobante_id),"
@@ -209,7 +213,8 @@ public class Conexion {
                     + "VALUES ('Mochila P2', 'Mochila lbl 2005', 21.10, 5, 2)");
         } catch (SQLException e) {
         }
-        /* Datos de clientes
+        //Datos de clientes
+        /*
         try {
             st.executeUpdate("INSERT INTO cliente "
                     + "(nombre_completo, apellido_materno, apellido_paterno, telefono, documento_id, documento_informacion, correo) VALUES "

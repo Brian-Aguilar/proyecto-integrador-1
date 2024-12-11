@@ -30,7 +30,7 @@
                                     <div>
                                         <label for="local" class="my-2">Local:</label>
                                         <select name="local" class="form-control">
-                                            <% DAOLocal localdao = new DAOLocal();
+                                            <% DAOLocal localdao = new DAOLocal(null);
                                                 for (Llocal l : localdao.getAll()) {%>
                                             <option value="<%=l.getId()%>"><%= l.getNombre()%></option>
                                             <%}%>
@@ -39,7 +39,7 @@
                                     <div>
                                         <label for="tipoVenta" class="my-2">Tipo de venta:</label>
                                         <select name="tipoVenta" class="form-control">
-                                            <% DAOTipoComprobante comprobante = new DAOTipoComprobante();
+                                            <% DAOTipoComprobante comprobante = new DAOTipoComprobante(null);
                                                 for (TipoComprobante tc : comprobante.getAll()) {%>
                                             <option value="<%=tc.getId()%>"><%=tc.getNombre()%></option>
                                             <%}%>

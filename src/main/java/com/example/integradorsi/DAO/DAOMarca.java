@@ -18,8 +18,12 @@ public class DAOMarca implements IDAO<Marca> {
     private Statement st;
     private final Logger logger = LoggerFactory.getLogger(DAOLocal.class);
 
-    public DAOMarca() {
-        this.con = Conexion.getConexion();
+    public DAOMarca(Connection x) {
+        if (x != null) {
+            this.con = x;
+        } else {
+            this.con = Conexion.getConexion();
+        }
     }
 
     @Override

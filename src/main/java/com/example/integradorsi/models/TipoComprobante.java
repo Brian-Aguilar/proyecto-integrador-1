@@ -11,6 +11,12 @@ public class TipoComprobante {
         this.nombre = "";
         this.estado = false;
     }
+    
+    public TipoComprobante(int id) {
+        this.id = id;
+        this.nombre = null;
+        this.estado = false;
+    }
 
     public TipoComprobante(String nombre) {
         this.id = 0;

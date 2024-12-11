@@ -15,6 +15,14 @@ public class DetalleIngresos {
         this.cantidad = 0;
         this.precio = 0.0;
     }
+    
+    public DetalleIngresos(Ingresos ingreso, Productos producto, int cantidad, double precio) {
+        this.id = 0;
+        this.ingreso = ingreso;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
 
     public DetalleIngresos(int id, Ingresos ingreso, Productos producto, int cantidad, double precio) {
         this.id = id;

@@ -5,7 +5,7 @@
 <%@page import="com.example.integradorsi.DAO.DAOTipoComprobante"%>
 <%@page import="com.example.integradorsi.DAO.DAOProductos"%>
 <%@page import="com.example.integradorsi.models.Productos"%>
-<form action="${pageContext.request.contextPath}/" method="POST">
+<form action="${pageContext.request.contextPath}/IngresosController" method="POST">
     <%DAOProductos producto = new DAOProductos();%>
     <div class="mb-3">
         <label for="productos" class="form-label">Producto:</label>
@@ -15,7 +15,7 @@
             <%}%>
         </select>
     </div>
-    <%DAOTipoComprobante tipoc = new DAOTipoComprobante();%>
+    <%DAOTipoComprobante tipoc = new DAOTipoComprobante(null);%>
     <div class="mb-3">
         <label for="tippo_comprobante" class="form-label">Comprobante:</label>
         <select class="form-control" id="tippo_comprobante" name="tipo_comprobante">
@@ -34,7 +34,7 @@
         <label for="fecha" class="form-label">Fecha:</label>
         <input type="date" class="form-control" id="fecha" name="fecha">
     </div>
-    <%DAOLocal local = new DAOLocal();%>
+    <%DAOLocal local = new DAOLocal(null);%>
     <div class="mb-3">
         <label for="local" class="form-label">Local:</label>
         <select class="form-control" id="local" name="local">
@@ -52,6 +52,11 @@
     <div class="mb-3">
         <label for="cantidad" class="form-label">Cantidad:</label>
         <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" value="1">
+    </div>
+
+    <div class="mb-3">
+        <label for="precio" class="form-label">Precio total</label>
+        <input type="number" class="form-control" id="precio" name="precio" min="1.00" value="1.00" step=".01">
     </div>
 
     <input type="hidden" name="usuario" value="<%=usuario.getId()%>">

@@ -9,7 +9,7 @@ public class LocalService {
     private DAOLocal localDAO;
     
     public LocalService() {
-        this.localDAO = new DAOLocal();
+        this.localDAO = new DAOLocal(null);
     }
     
     public Llocal obtenerLocal(int id) {

@@ -18,6 +18,12 @@ public class Login {
         this.is_admin = false;
         this.is_vendedor = true;
     }
+    public Login(int id) {
+        this.id = id;
+        this.nombre_completo = null;
+        this.is_admin = false;
+        this.is_vendedor = false;
+    }
 
     public Login(String usuario, String password) {
         this.id = 0;

@@ -18,8 +18,12 @@ public class DAOLocal implements IDAO<Llocal> {
     private Statement st;
     private final Logger logger = LoggerFactory.getLogger(DAOLocal.class);
 
-    public DAOLocal() {
-        this.con = Conexion.getConexion();
+    public DAOLocal(Connection x) {
+        if (x != null) {
+            this.con = x;
+        } else {
+            this.con = Conexion.getConexion();
+        }
     }
 
     @Override

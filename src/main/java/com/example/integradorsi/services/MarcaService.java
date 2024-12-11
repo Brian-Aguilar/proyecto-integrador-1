@@ -8,7 +8,7 @@ public class MarcaService {
     private DAOMarca marcaDAO;
     
     public MarcaService() {
-        this.marcaDAO = new DAOMarca();
+        this.marcaDAO = new DAOMarca(null);
     }
     
     public Marca obtenerMarca(int id) {
