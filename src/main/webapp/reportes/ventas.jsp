@@ -36,7 +36,7 @@
                                             <label for="fechaInicio">Fecha Fin:</label>
                                             <input type="date" name="fechaFin" class="form-control"/>
                                         </div>
-                                        <% DAOTipoComprobante tc = new DAOTipoComprobante();%>
+                                        <% DAOTipoComprobante tc = new DAOTipoComprobante(null);%>
                                         <div>
                                             <label for="tipoVenta">Tipo de Venta:</label>
                                             <select name="tipoVenta" class="form-control">
@@ -46,7 +46,7 @@
                                                 <%}%>
                                             </select>
                                         </div>
-                                        <% DAOLocal daoLocal = new DAOLocal();%>
+                                        <% DAOLocal daoLocal = new DAOLocal(null);%>
                                         <div>
                                             <label for="local">Local:</label>
                                             <select name="local" class="form-control">
