@@ -64,7 +64,7 @@
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-danger">PDF</button>
-                                    <button type="button" class="btn btn-success">Excel</button>
+                                    <a href="${pageContext.request.contextPath}/ExcelController?tipo=venta" class="btn btn-success">Excel</a>
                                 </div>
                             </div>
                             <div class="table-responsive mt-4">
@@ -102,7 +102,7 @@
                                     </thead>
                                     <tbody>
                                         <% DAODetalleVenta daoDV = new DAODetalleVenta();
-                                            for (DetalleVentas dv : daoDV.getAll()) { %>
+                                            for (DetalleVentas dv : daoDV.getAll()) {%>
                                         <tr>
                                             <td class="border-bottom-0">
                                                 <span class="fw-normal"><%=dv.getVenta().getCliente().getNombre()%></span>                          

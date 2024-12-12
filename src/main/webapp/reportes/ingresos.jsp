@@ -64,7 +64,7 @@
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-danger">PDF</button>
-                                    <button type="button" class="btn btn-success">Excel</button>
+                                    <a href="${pageContext.request.contextPath}/ExcelController?tipo=ingreso" class="btn btn-success">Excel</a>
                                 </div>
                             </div>
                             <div class="table-responsive mt-4">
