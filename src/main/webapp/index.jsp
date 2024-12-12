@@ -1,3 +1,9 @@
+<%@page import="com.example.integradorsi.DAO.DAOProductos"%>
+<%@page import="com.example.integradorsi.DAO.DAOTipoComprobante"%>
+<%@page import="com.example.integradorsi.DAO.DAOMarca"%>
+<%@page import="com.example.integradorsi.DAO.DAOLocal"%>
+<%@page import="com.example.integradorsi.DAO.DAOClientes"%>
+<%@page import="com.example.integradorsi.DAO.DAOCategoria"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,8 +23,45 @@
             <div class="body-wrapper">
                 <%@include file="components/Header.jsp" %>
                 <!<!-- Contenido -->
+                <%
+                    DAOCategoria daoC = new DAOCategoria(null);
+                    DAOClientes daoClientes = new DAOClientes();
+                    DAOLocal daoLocal = new DAOLocal(null);
+                    DAOMarca daoMarca = new DAOMarca(null);
+                    DAOTipoComprobante daoTC = new DAOTipoComprobante(null);
+                    DAOProductos daoP = new DAOProductos();
+                %>
                 <div class="container-fluid">
-                    <h1>Inicio</h1>
+                    <div class="row gap-7 justify-content-between">
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Categorias</h3>
+                            <h4 class="my-8 py-8"><%=daoC.size()%></h4>
+                        </div>
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Clientes</h3>
+                            <h4 class="my-8 py-8"><%=daoClientes.size()%></h4>
+                        </div>
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Local</h3>
+                            <h4 class="my-8 py-8"><%=daoLocal.size()%></h4>
+                        </div>
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Marcas</h3>
+                            <h4 class="my-8 py-8"><%=daoMarca.size()%></h4>
+                        </div>
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Tipo de comprobantes</h3>
+                            <h4 class="my-8 py-8"><%=daoTC.size()%></h4>
+                        </div>
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Productos</h3>
+                            <h4 class="my-8 py-8"><%=daoP.size()%></h4>
+                        </div>
+                        <div class="col-3 card p-4 text-center">
+                            <h3>Ventas</h3>
+                            <h4 class="my-8 py-8"><%=daoC.size()%></h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

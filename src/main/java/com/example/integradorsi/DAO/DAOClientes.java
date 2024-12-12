@@ -96,7 +96,19 @@ public class DAOClientes implements IDAO<Clientes> {
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int cantidad = 0;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT COUNT(*) as cantidad FROM cliente");
+            if (rs != null) {
+                rs.next();
+                cantidad = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            logger.info("Error al obtener el tamaño en la tabla local, {}",
+                    e.getMessage());
+        }
+        return cantidad;
     }
 
 }
