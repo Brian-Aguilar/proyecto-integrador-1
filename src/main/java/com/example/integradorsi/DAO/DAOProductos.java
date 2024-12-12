@@ -80,7 +80,6 @@ public class DAOProductos implements IDAO<Productos> {
     
     @Override
     public void add(Productos item) {
-        System.out.println(item.getNombre());
         try {
             PreparedStatement pst = con.prepareStatement("INSERT INTO productos (nombre, descripcion, precio, categoria_id, marca_id) VALUES (?, ?, ?, ?, ?)");
             pst.setString(1, item.getNombre());

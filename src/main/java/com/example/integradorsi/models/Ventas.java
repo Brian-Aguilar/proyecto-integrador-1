@@ -14,6 +14,10 @@ public class Ventas {
         this.local = new Llocal();
         this.fecha_venta = null;
     }
+    
+    public Ventas(int id) {
+        this.id= id;
+    }
 
     public Ventas(int id, Clientes cliente, Llocal local, Date fecha_venta) {
         this.id = id;

@@ -1,3 +1,5 @@
+<%@page import="com.example.integradorsi.models.DetalleVentas"%>
+<%@page import="com.example.integradorsi.DAO.DAODetalleVenta"%>
 <%@page import="com.example.integradorsi.models.Llocal"%>
 <%@page import="com.example.integradorsi.DAO.DAOLocal"%>
 <%@page import="com.example.integradorsi.models.TipoComprobante"%>
@@ -99,35 +101,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% DAODetalleVenta daoDV = new DAODetalleVenta();
+                                            for (DetalleVentas dv : daoDV.getAll()) { %>
                                         <tr>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Pepito</span>                          
+                                                <span class="fw-normal"><%=dv.getVenta().getCliente().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <h6 class="mb-0 fw-normal">70707070</h6>
+                                                <h6 class="mb-0 fw-normal"><%=dv.getVenta().getCliente().getDocumento()%></h6>
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Localll</span>                          
+                                                <span class="fw-normal"><%=dv.getVenta().getLocal().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Tuki</span>                          
+                                                <span class="fw-normal"><%=dv.getTipo_venta().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Proudcoototot</span>                          
+                                                <span class="fw-normal"><%=dv.getProducto().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">2</span>                          
+                                                <span class="fw-normal"><%=dv.getCantidad()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 20.00</span>                          
+                                                <span class="fw-normal">S/. <%=dv.getProducto().getPrecio()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 40.00</span>                          
+                                                <span class="fw-normal">S/. <%=dv.getTotal_pagar()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">19/08/2024</span>                          
+                                                <span class="fw-normal"><%=dv.getVenta().getFecha_venta()%></span>                          
                                             </td>
                                         </tr> 
+                                        <% }%>
                                     </tbody>
                                 </table>
                             </div>

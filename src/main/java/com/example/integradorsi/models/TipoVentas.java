@@ -14,6 +14,13 @@ public class TipoVentas {
         this.estado = false;
     }
 
+    public TipoVentas(int id) {
+        this.id = id;
+        this.nombre = null;
+        this.descripcion = null;
+        this.estado = false;
+    }
+
     public TipoVentas(int id, String nombre, String descripcion, boolean estado) {
         this.id = id;
         this.nombre = nombre;

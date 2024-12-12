@@ -1,3 +1,5 @@
+<%@page import="com.example.integradorsi.models.DetalleIngresos"%>
+<%@page import="com.example.integradorsi.DAO.DAODetalleIngresos"%>
 <%@page import="com.example.integradorsi.models.Llocal"%>
 <%@page import="com.example.integradorsi.DAO.DAOLocal"%>
 <%@page import="com.example.integradorsi.models.TipoComprobante"%>
@@ -89,27 +91,30 @@
                                             </th>
                                         </tr>
                                     </thead>
+                                    <% DAODetalleIngresos daoDI = new DAODetalleIngresos();%>
                                     <tbody>
+                                        <% for (DetalleIngresos di : daoDI.getAll()) {%>
                                         <tr>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">1</span>                          
+                                                <span class="fw-normal"><%=di.getId()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <h6 class="mb-0 fw-normal">18/08/2024</h6>
+                                                <h6 class="mb-0 fw-normal"><%=di.getIngreso().getFecha().toString()%></h6>
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Boleta</span>                          
+                                                <span class="fw-normal"><%=di.getIngreso().getComprobante().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">20202022002</span>                          
+                                                <span class="fw-normal"><%=di.getIngreso().getNumero_comprobante()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Mi casa</span>                          
+                                                <span class="fw-normal"><%=di.getIngreso().getLocal().getNombre()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 40.00</span>                          
+                                                <span class="fw-normal">S/. <%=di.getIngreso().getImporte()%></span>                          
                                             </td>
                                         </tr> 
+                                        <% }%>
                                     </tbody>
                                 </table>
                             </div>

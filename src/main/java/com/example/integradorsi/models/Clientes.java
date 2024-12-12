@@ -1,6 +1,7 @@
 package com.example.integradorsi.models;
 
 public class Clientes {
+
     private int id;
     private String nombre;
     private String apellidoP;
@@ -13,6 +14,12 @@ public class Clientes {
 
     public Clientes() {
         this.id = 0;
+        this.tipoDocumento = null;
+        this.estado = false;
+    }
+
+    public Clientes(int id) {
+        this.id = id;
         this.tipoDocumento = null;
         this.estado = false;
     }
@@ -100,7 +107,5 @@ public class Clientes {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-    
-    
-    
+
 }

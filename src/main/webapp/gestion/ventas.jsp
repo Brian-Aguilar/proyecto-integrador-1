@@ -1,3 +1,5 @@
+<%@page import="com.example.integradorsi.models.DetalleVentas"%>
+<%@page import="com.example.integradorsi.DAO.DAODetalleVenta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -55,19 +57,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <% DAODetalleVenta daoDV = new DAODetalleVenta(); %>
+                                        <% for (DetalleVentas dv : daoDV.getAll()) { %>
                                         <tr>
-                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
+                                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0"><%=dv.getVenta().getId()%></h6></td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">Producto</span>                          
+                                                <span class="fw-normal"><%=dv.getProducto().getNombre() %></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <h6 class="mb-0 fw-normal">2</h6>
+                                                <h6 class="mb-0 fw-normal"><%=dv.getCantidad()%></h6>
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 40.00</span>                          
+                                                <span class="fw-normal">S/. <%=dv.getProducto().getPrecio()%></span>                          
                                             </td>
                                             <td class="border-bottom-0">
-                                                <span class="fw-normal">S/. 80.00</span>                          
+                                                <span class="fw-normal">S/. <%=dv.getTotal_pagar()%></span>                          
                                             </td>
                                             <td class="border-bottom-0 d-flex justify-content-center align-items-center gap-2" style="max-width: 100px;">
                                                 <button type="button" class="btn btn-danger">
@@ -75,6 +79,7 @@
                                                 </button>
                                             </td>
                                         </tr> 
+                                        <% }%>
                                     </tbody>
                                 </table>
                             </div>

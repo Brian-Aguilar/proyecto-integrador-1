@@ -6,6 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Conexion {
+    
+    /**
+     * Configuracion:
+        pragma journal_mode = WAL;
+        pragma synchronous = normal;
+        pragma journal_size_limit = 6144000;
+     */
 
     private static Statement st;
     private static Connection conn = null;
@@ -165,7 +172,7 @@ public class Conexion {
                     + "	estado NUMERIC DEFAULT 1,"
                     + "	FOREIGN KEY (venta_id) REFERENCES ventas (venta_id),"
                     + "	FOREIGN KEY (producto_id) REFERENCES productos (producto_id),"
-                    + "	FOREIGN KEY (tipoVenta_id) REFERENCES tipoVenta (tipoVenta_id),"
+                    + "	FOREIGN KEY (tipoVenta_id) REFERENCES tipoComprobante (comprobante_id),"
                     + "	FOREIGN KEY (registro_usuario) REFERENCES usuarios (usuarios_id)"
                     + ")");
         } catch (SQLException e) {
@@ -227,8 +234,8 @@ public class Conexion {
                     + "('Cecilia','Alvarez','Suarez','920584453','1','10204105','Alvarez.Suarez@gmail.com')");
         } catch (SQLException e) {
             System.out.println(e);
-        }*/
-
+        }
+*/
     }
 
 }

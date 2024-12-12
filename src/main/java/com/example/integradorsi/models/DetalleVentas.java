@@ -3,7 +3,7 @@ package com.example.integradorsi.models;
 public class DetalleVentas {
     private Ventas venta;
     private Productos producto;
-    private TipoVentas tipo_venta;
+    private TipoComprobante tipo_venta;
     private int cantidad;
     private double sub_total;
     private double descuento;
@@ -15,7 +15,7 @@ public class DetalleVentas {
     public DetalleVentas() {
     }
 
-    public DetalleVentas(Ventas venta, Productos producto, TipoVentas tipo_venta, int cantidad, double sub_total, double descuento, double igv, double total_pagar, Login registro_usuario, boolean estado) {
+    public DetalleVentas(Ventas venta, Productos producto, TipoComprobante tipo_venta, int cantidad, double sub_total, double descuento, double igv, double total_pagar, Login registro_usuario, boolean estado) {
         this.venta = venta;
         this.producto = producto;
         this.tipo_venta = tipo_venta;
@@ -46,11 +46,11 @@ public class DetalleVentas {
         this.producto = producto;
     }
 
-    public TipoVentas getTipo_venta() {
+    public TipoComprobante getTipo_venta() {
         return tipo_venta;
     }
 
-    public void setTipo_venta(TipoVentas tipo_venta) {
+    public void setTipo_venta(TipoComprobante tipo_venta) {
         this.tipo_venta = tipo_venta;
     }
 
